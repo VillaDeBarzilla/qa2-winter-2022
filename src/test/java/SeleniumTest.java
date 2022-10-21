@@ -12,7 +12,6 @@ public class SeleniumTest {
         browser.get("http://www.discovercars.com");
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        browser.navigate();
         browser.close();
 
     }
