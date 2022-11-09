@@ -1,4 +1,5 @@
-import dev.failsafe.internal.util.Assert;
+package homework4;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,11 +24,11 @@ public class SeleniumTest {
     private final By CHOOSE_SMALL_CARS = By.xpath(".//div[@class = 'img small']");
     private final By CLICK_SORT_BY = By.xpath(".//a[contains(@class, 'dropdown-toggle')]");
     private final By SELECT_SORT_ITEM = By.xpath(".//li[contains(@class, 'dc-ui dropdown-item sort-by-list trigger-gtm-dynamic-event') and contains(text(), 'Price/rating')]");
-    private final By CHECKBOX_GASOLINE  = By.xpath(".//label[@for = 'fuel-type-ft-V']");
+    private final By CHECKBOX_GASOLINE = By.xpath(".//label[@for = 'fuel-type-ft-V']");
     private final By CHECKBOX_FOUR_SEATS = By.xpath(".//label[@for = 'number-of-seats-seats-4']");
     private final By RENTAL_CONDITIONS_OPEN = By.xpath(".//a[contains(@class, 'rental-conditions') and contains(text(), 'Rental Conditions')]");
     private final By RENTAL_CONDITIONS_CLOSE = By.xpath(".//div[@class = 'modal-close']");
-    private final By CLICK_VIEW_BTN = By.xpath(".//a[contains(@data-id, '519-L2D4') and contains(@class, 'btn-book submit')]");
+    private final By CLICK_VIEW_BTN = By.xpath(".//a[contains(@data-id, '519-SKTB') and contains(@class, 'btn-book submit')]");
 
     @Test
     public void openHomePageCheck() {
@@ -47,6 +48,7 @@ public class SeleniumTest {
         browser.findElement(CHANGE_CURRENCY_MENU).click();
         browser.findElement(SELECT_CURRENCY_CLICK).click();
         wait.until(ExpectedConditions.elementToBeClickable(ENTER_CITY_FIELD));
+
         browser.findElement(ENTER_CITY_FIELD).sendKeys("Riga");
         wait.until(ExpectedConditions.elementToBeClickable(CITY_FIELD_SELECTION));
         browser.findElements(CITY_FIELD_SELECTION).get(0).click();
@@ -54,10 +56,6 @@ public class SeleniumTest {
         wait.until(ExpectedConditions.elementToBeClickable(CLICK_NEXT_BTN));
         browser.findElement(CLICK_NEXT_BTN).click();
         browser.findElement(CLICK_PREV_BTN).click();
-
-        WebElement showingOutCar = browser.findElement(By.xpath(".//span[@class = 'showing-cars']"));
-        WebElement totalCar = browser.findElement(By.xpath(".//span[@class = 'total-cars']"));
-        System.out.println("I will show you" + " " + showingOutCar.getText() + " " + "cars out of" + " " + totalCar.getText() + " " + "cars");
 
         browser.findElement(CHOOSE_SMALL_CARS).click();
         browser.findElement(CLICK_SORT_BY).click();
@@ -69,6 +67,10 @@ public class SeleniumTest {
 
         browser.findElement(CHECKBOX_GASOLINE).click();
         browser.findElement(CHECKBOX_FOUR_SEATS).click();
+
+        WebElement showingOutCar = browser.findElement(By.xpath(".//span[@class = 'showing-cars']"));
+        WebElement totalCar = browser.findElement(By.xpath(".//span[@class = 'total-cars']"));
+        System.out.println("I will show you" + " " + showingOutCar.getText() + " " + "cars out of" + " " + totalCar.getText() + " " + "cars");
 
         WebElement partialPrepayment = browser.findElements(By.xpath(".//span[contains(text(), 'Partial prepayment')]")).get(3);
         System.out.println("They got a" + " " + partialPrepayment.getText());
