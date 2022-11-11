@@ -103,7 +103,7 @@ public class SeleniumTest {
         for (WebElement link : filteredCars) {
             System.out.println("I filtered" + " " + filteredCars.size() + " " + "cars for you");
         }
-        browser.findElements();
+
 
         //-------------QUANTITY OF FILTERED CARS
         WebElement showingOutCar = browser.findElement(By.xpath(".//span[@class = 'showing-cars']"));
