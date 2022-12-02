@@ -109,7 +109,7 @@ public class FlymodeTest {
 
         Assertions.assertEquals(finalText, "Thank You for flying with us!");
 
-        System.out.println("Test is finished without errors. Code by Eduards Barzilovics© supported by qaguru.lv©");
+        System.out.println("Code by Eduards Barzilovics© supported by qaguru.lv©");
 
     }
 
