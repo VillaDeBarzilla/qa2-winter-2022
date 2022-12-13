@@ -89,6 +89,7 @@ public class FlymodeTest {
         Assertions.assertEquals(nameField, resultName, "Names are not equals");
         Assertions.assertEquals(selectedFrom, fromThird, "Departures on bottom are not equals!");
         Assertions.assertEquals(selectedTo, toThird, "Arrivals on bottom are not equals!");
+        Assertions.assertTrue(getFinalPrice.matches("[0-9].*"), "Price doesn't exist!");
         System.out.println(getFinalPrice + " EUR is a total price for a flight");
 
         browser.findElement(CLICK_BOOK).click();
@@ -101,7 +102,7 @@ public class FlymodeTest {
         String gettingSeatNumber = checkSeat.getText();
         String checkSeatNumber = gettingSeatNumber.split(" ")[3];
 
-        Assertions.assertEquals(selectSeat, checkSeatNumber, "Seat are don't match");
+        Assertions.assertEquals(selectSeat, checkSeatNumber, "Seat doesn't match");
 
         browser.findElement(CLICK_BOOK_FINAL).click();
 
