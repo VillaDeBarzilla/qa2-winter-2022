@@ -102,7 +102,7 @@ public class FlymodeTest {
         String gettingSeatNumber = checkSeat.getText();
         String checkSeatNumber = gettingSeatNumber.split(" ")[3];
 
-        Assertions.assertEquals(selectSeat, checkSeatNumber, "Seat doesn't match");
+        Assertions.assertEquals(selectSeat, checkSeatNumber, "Seats doesn't match");
 
         browser.findElement(CLICK_BOOK_FINAL).click();
 
