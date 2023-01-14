@@ -1,17 +1,19 @@
 package pageobject;
 
+import org.apache.commons.lang3.RandomUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import pageobject.model.Passenger;
 import pageobject.pages.HomePage;
 import pageobject.pages.PassengerInfoPage;
+import pageobject.pages.SeatSelectionPage;
+import pageobject.pages.SuccessfulRegistrationPage;
 
 public class TicketsTestsOnPages {
     private final String URL = "www.qaguru.lv:8089/tickets/";
     private final String FROM_AIRPORT = "RIX";
     private final String TO_AIRPORT = "BCN";
-    private final By SELECT_PLACE = By.xpath(".//div[@class = 'line']/div[@class = 'seat']");
 
 
     private BaseFunc baseFunc = new BaseFunc();
@@ -21,13 +23,13 @@ public class TicketsTestsOnPages {
         Passenger passenger = new Passenger("Luke","Skywalker", "12345", 2,
                 3, 4, "13-05-2018");
 
+        int seatNr = RandomUtils.nextInt(1, 35);
+
         baseFunc.openUrl(URL);
 
-        //--- HOME PAGE
         HomePage homePage = new HomePage(baseFunc);
         homePage.selectAirports(FROM_AIRPORT, TO_AIRPORT);
 
-        //--- PASSENGER INFO PAGE
         PassengerInfoPage infoPage = new PassengerInfoPage(baseFunc);
         infoPage.fillInPassengerForm(passenger);
 
@@ -40,16 +42,20 @@ public class TicketsTestsOnPages {
 
         infoPage.clickOnBook();
 
-        String seat = baseFunc.findElements(SELECT_PLACE).get(15).getText();
-        baseFunc.findElements(SELECT_PLACE).get(15).click();
-        String seatSecond = infoPage.checkSeat();
-        seatSecond = seatSecond.split(" ")[3];
+        SeatSelectionPage seatSelection = new SeatSelectionPage(baseFunc);
+        seatSelection.seatSelect(seatNr);
+        int selectedSeat = seatSelection.getSelectedSeatNr();
 
-        Assertions.assertEquals(seat, seatSecond, "Seats doesn't match!");
+        Assertions.assertEquals(seatNr, selectedSeat,"Wrong seat");
 
-        infoPage.clickBookLast();
+        seatSelection.clickBookLast();
 
-        Assertions.assertEquals(infoPage.finalText(), "Thank You for flying with us!");
+        SuccessfulRegistrationPage successfulRegistration = new SuccessfulRegistrationPage(baseFunc);
+        Assertions.assertTrue(successfulRegistration.isSuccessfulRegistrationPageAppears(), "Wrong text on successful registration page");
 
     }
+      @AfterEach
+      public void closeBrowser() {
+          baseFunc.closeBrowserAfterTest();
+      }
 }

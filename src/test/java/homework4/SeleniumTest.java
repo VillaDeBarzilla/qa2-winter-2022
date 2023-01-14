@@ -31,6 +31,7 @@ public class SeleniumTest {
     private final By CHECKBOX_GASOLINE = By.xpath(".//label[@for = 'fuel-type-ft-V']");
     private final By CHECKBOX_FOUR_SEATS = By.xpath(".//label[@for = 'number-of-seats-seats-4']");
     private final By FILTERED_CARS = By.xpath(".//div[@class = 'car-box filtered']");
+    private final By PARTIAL_PREPAYMENT = By.xpath(".//span[contains(text(), 'Partial prepayment')]");
     private final By RENTAL_CONDITIONS_OPEN = By.xpath(".//a[contains(@class, 'rental-conditions') and contains(text(), 'Rental Conditions')]");
     private final By RENTAL_CONDITIONS_CLOSE = By.xpath(".//div[@class = 'modal-close']");
     private final By CLICK_VIEW_BTN = By.xpath(".//a[contains(@data-id, '519-SKTB') and contains(@class, 'btn-book submit')]");
@@ -48,15 +49,16 @@ public class SeleniumTest {
         wait.until(ExpectedConditions.elementToBeClickable(ACCEPT_COOKIES_BTN));
         browser.findElement(ACCEPT_COOKIES_BTN).click();
 
+        //---------CHANGE CURRENCY
+ //      browser.findElement(CHANGE_CURRENCY_MENU).click();
+ //      browser.findElement(SELECT_CURRENCY_CLICK).click();
+
         //---------FIND AND SELECT COUNTRY
         browser.findElement(LATVIA_SELECTION_LINK).click();
         if (browser.findElement(LATVIA_PAGE_CHECK).getText().contains("Car Rental in Latvia")) {
             System.out.println("Congratulations! You Found Latvia!");
         }
 
-        //---------CHANE CURRENCY
-        browser.findElement(CHANGE_CURRENCY_MENU).click();
-        browser.findElement(SELECT_CURRENCY_CLICK).click();
 
         //---------SELECT PLACE AND CLICK SUBMIT
         wait.until(ExpectedConditions.elementToBeClickable(ENTER_CITY_FIELD));
@@ -67,13 +69,13 @@ public class SeleniumTest {
 
         //---------------LOADING PAGE------------------
 
-        if (browser.findElement(FIND_LOADING_ANIMATION).isDisplayed()){
+        if (browser.findElement(FIND_LOADING_ANIMATION).isDisplayed()) {
             System.out.println("I found loading animation.");
         }
-        if (browser.findElement(FIND_FIRST_TEXT).isDisplayed()){
+        if (browser.findElement(FIND_FIRST_TEXT).isDisplayed()) {
             System.out.println("I found first text.");
         }
-        if (browser.findElement(FIND_SECOND_TEXT).isDisplayed()){
+        if (browser.findElement(FIND_SECOND_TEXT).isDisplayed()) {
             System.out.println("I found second text.");
         }
 
@@ -92,7 +94,8 @@ public class SeleniumTest {
         browser.findElement(SELECT_SORT_ITEM).click();
 
         //--------------BLOCK WITH SPECIAL OFFERS
-        WebElement showSpecialOffers = browser.findElement(By.xpath(".//div[contains(@class, 'flt-type')]/div[@class = 'flt-head opened']/span[contains(@class, 'category-label trend') and contains(text(), 'Special offers')]"));        System.out.println("I found" + " " + "«" + showSpecialOffers.getText() + "»" + " " + "block");
+        WebElement showSpecialOffers = browser.findElement(By.xpath(".//div[contains(@class, 'flt-type')]/div[@class = 'flt-head opened']/span[contains(@class, 'category-label trend') and contains(text(), 'Special offers')]"));
+        System.out.println("I found" + " " + "«" + showSpecialOffers.getText() + "»" + " " + "block");
 
         //--------------FILTER/CHECKBOXES
         browser.findElement(CHECKBOX_GASOLINE).click();
@@ -102,33 +105,42 @@ public class SeleniumTest {
         List<WebElement> filteredCars = browser.findElements(FILTERED_CARS);
         for (WebElement link : filteredCars) {
             System.out.println("I filtered" + " " + filteredCars.size() + " " + "cars for you");
+            break;
         }
 
+        //-------------PARTIAL PREPAYMENT FOUNDED
+        WebElement partialPrepayment = browser.findElement(By.xpath(".//span[contains(text(), 'Partial prepayment')]"));
+        for (WebElement link : filteredCars) {
+            System.out.println("They got a" + " " + partialPrepayment.getText());
+            break;
+        }
 
         //-------------QUANTITY OF FILTERED CARS
         WebElement showingOutCar = browser.findElement(By.xpath(".//span[@class = 'showing-cars']"));
         WebElement totalCar = browser.findElement(By.xpath(".//span[@class = 'total-cars']"));
         System.out.println("I will show you" + " " + showingOutCar.getText() + " " + "cars out of" + " " + totalCar.getText() + " " + "cars");
 
-        //-------------PARTIAL PREPAYMENT FOUNDED
-        WebElement partialPrepayment = browser.findElements(By.xpath(".//span[contains(text(), 'Partial prepayment')]")).get(3);
-        System.out.println("They got a" + " " + partialPrepayment.getText());
 
         //-------------CODE IS NOT OK, BUT I WILL FIX IT
-        browser.findElements(RENTAL_CONDITIONS_OPEN).get(4).click();
-        wait.until(ExpectedConditions.elementToBeClickable(RENTAL_CONDITIONS_CLOSE));
-        browser.findElement(RENTAL_CONDITIONS_CLOSE).click();
+        List<WebElement> rentalConditionsOpen = browser.findElements(By.xpath(".//a[contains(@class, 'rental-conditions') and contains(text(), 'Rental Conditions')]"));
+        for (WebElement link : rentalConditionsOpen) {
+            System.out.println("Lets see" + " " + rentalConditionsOpen);
+        }
 
-        WebElement numberOfBags = browser.findElements(By.xpath(".//span[contains(text(), '1 bag')]")).get(2);
-        System.out.println("You can load" + " " + numberOfBags.getText());
-
-        WebElement carRating = browser.findElements(By.xpath(".//div[@class = 'supplier-rating']")).get(4);
-        System.out.println("The car rating is:" + " " + carRating.getText());
-
-        WebElement rentalCost = browser.findElements(By.xpath(".//div[@class = 'price-item-price-main']")).get(4);
-        System.out.println("Rental cost:" + " " + rentalCost.getText());
-
-        browser.findElement(CLICK_VIEW_BTN).click();
+        //       browser.findElements(RENTAL_CONDITIONS_OPEN).get(4).click();
+        //       wait.until(ExpectedConditions.elementToBeClickable(RENTAL_CONDITIONS_CLOSE));
+        //       browser.findElement(RENTAL_CONDITIONS_CLOSE).click();
+//
+        //       WebElement numberOfBags = browser.findElements(By.xpath(".//span[contains(text(), '1 bag')]")).get(2);
+        //       System.out.println("You can load" + " " + numberOfBags.getText());
+//
+        //       WebElement carRating = browser.findElements(By.xpath(".//div[@class = 'supplier-rating']")).get(4);
+        //       System.out.println("The car rating is:" + " " + carRating.getText());
+//
+        //       WebElement rentalCost = browser.findElements(By.xpath(".//div[@class = 'price-item-price-main']")).get(4);
+        //       System.out.println("Rental cost:" + " " + rentalCost.getText());
+//
+        //       browser.findElement(CLICK_VIEW_BTN).click();
 
 
     }

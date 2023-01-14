@@ -1,6 +1,5 @@
 package homework5;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -20,11 +19,12 @@ public class AmazonTest {
     private final By CLICK_BESTSELLERS = By.xpath(".//a[contains(@data-csa-c-content-id, 'nav_cs_bestsellers')]");
     private final By CLICK_ON_BOOKS = By.xpath(".//div[contains(@class, '_p13n-zg-nav-tree-all_style_zg-browse-item__1rdKf')]/a");
     private final By FINDING_FOURTH_BOOK = By.xpath(".//a[@class = 'a-link-normal']/i");
-    private final By GETTING_STARS_FIRST = By.xpath(".//div[@class = 'a-icon-row']/a[@class = 'a-link-normal']");
-    private final By GETTING_REVIEWS_FIRST = By.xpath(".//span[@class = 'a-size-small']");
-    private final By GETTING_STARS_SECOND = By.xpath(".//span[@class = 'a-size-medium a-color-base']");
-    private final By GETTING_REVIEWS_SECOND = By.xpath(".//div[contains(@class, 'a-spacing-base a-size-base')]");
+    private final By GETTING_STARS = By.xpath(".//span[@class = 'a-icon-alt']");
+    private final By GETTING_REVIEWS = By.xpath(".//div[contains(@class, 'a-section review')]");
+    private final By NEXT_PAGE_BTN = By.xpath(".//li[@class = 'a-last']");
+
     private WebDriver browser;
+    private WebDriverWait wait;
 
 
     @Test
@@ -33,7 +33,7 @@ public class AmazonTest {
         browser = new ChromeDriver();
         browser.manage().window().maximize();
         browser.get("https://www.amazon.de/");
-        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+        wait = new WebDriverWait(browser, Duration.ofSeconds(10));
 
         //--- ACCEPTING COOKIES
         browser.findElement(ACCEPT_COOKIES_BTN).click();
@@ -55,34 +55,42 @@ public class AmazonTest {
         }
 
         //--- FINDING STARS ON A FIRST PAGE
-        List<WebElement> findingStarsFirst = browser.findElements(GETTING_STARS_FIRST);
-        String starsFirst = findingStarsFirst.get(3).getAttribute("title");
+        List<WebElement> findingStarsFirst = browser.findElements(GETTING_STARS);
+        String starsFirst = findingStarsFirst.get(3).getAttribute("innerText");
         String textFirst = starsFirst;
         String starsCountFirst = textFirst.split(" ")[0];
-        System.out.println(starsCountFirst);
 
+        //--- FINDING 4TH BOOK AND CLICKING ON IT
+        List<WebElement> findingBook = browser.findElements(FINDING_FOURTH_BOOK);
+        findingBook.get(3).click();
 
-       //--- FINDING 4TH BOOK AND CLICKING ON IT
-       List<WebElement> findingBook = browser.findElements(FINDING_FOURTH_BOOK);
-       for(int i = 0; i< 3; i++);
-       {
-           findingBook.get(3).click();
-       }
-
-       //--- FINDING STARS ON A SECOND PAGE
-       WebElement findingStarsSecond = browser.findElement(GETTING_STARS_SECOND);
-       String starsSecond = findingStarsSecond.getText();
-       String textSecond = starsSecond;
-       String starsCountSecond = textSecond.split(" ")[0];
-       System.out.println(starsCountSecond);
+        //--- FINDING STARS ON A SECOND PAGE
+        List<WebElement> findingStarsSecond = browser.findElements(GETTING_STARS);
+        String starsSecond = findingStarsSecond.get(0).getAttribute("innerText");
+        String textSecond = starsSecond;
+        String starsCountSecond = textSecond.split(" ")[0];
 
         //--- COMPARE STARS ON TWO PAGES
-        Assertions.assertEquals(starsCountFirst, starsCountSecond, "They are equals");
+        Assertions.assertEquals(starsCountFirst, starsCountSecond, "Stars are not equals");
+
+        List<WebElement> reviews = browser.findElements(GETTING_REVIEWS);
+        for (int i = 0; i < reviews.size(); i++) {
+            reviews.get(i);
+                 }
+
+        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+        WebElement selectElement =
+                wait.until(ExpectedConditions
+                        .visibilityOfElementLocated(NEXT_PAGE_BTN));
+        browser.findElement(NEXT_PAGE_BTN).click();
+
+
 
     }
-    @AfterEach
-    public void closeBrowser(){
-        browser.close();
-    }
+
+ //  @AfterEach
+ //  public void closeBrowser() {
+ //      browser.close();
+ //  }
 }
 

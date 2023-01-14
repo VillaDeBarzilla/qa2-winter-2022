@@ -34,6 +34,10 @@ public class BaseFunc {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
+    public void click(WebElement we){
+        wait.until(ExpectedConditions.elementToBeClickable(we)).click();
+    }
+
     public void select(By locator, String value) {
         WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         Select select = new Select(we);
@@ -62,5 +66,12 @@ public class BaseFunc {
     }
     public void waitForElementsCountToBe(By locator, int count){
         wait.until(ExpectedConditions.numberOfElementsToBe(locator, count));
+    }
+    public void waitForMinElementsAmount(By locator, int minCount){
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(locator, minCount));
+    }
+
+    public void closeBrowserAfterTest(){
+        browser.close();
     }
 }

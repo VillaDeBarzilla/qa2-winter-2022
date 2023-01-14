@@ -2,7 +2,6 @@ package pageobject.pages;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pageobject.BaseFunc;
 import pageobject.model.Passenger;
 
@@ -20,12 +19,6 @@ public class PassengerInfoPage {
     private final By GET_PRICE = By.id("response");
     private final By CLICK_BOOK = By.id("book2");
 
-    private final By SELECT_PLACE = By.xpath(".//div[@class = 'line']/div[@class = 'seat']");
-    private final By CHECK_PLACE_NUMBER = By.xpath(".//div[@class = 'line']");
-
-    private final By CLICK_BOOK_LAST = By.id("book3");
-
-    private final By FINAL_TEXT = By.xpath(".//div[@class = 'finalTxt']");
     private BaseFunc baseFunc;
 
     public PassengerInfoPage(BaseFunc baseFunc) {
@@ -76,19 +69,5 @@ public class PassengerInfoPage {
         baseFunc.click(CLICK_BOOK);
     }
 
-    public String seatSelection() {
-        return baseFunc.findElements(SELECT_PLACE).get(15).getText();
-    }
-
-    public String checkSeat() {
-        return baseFunc.findElement(CHECK_PLACE_NUMBER).getText();
-    }
-
-    public void clickBookLast(){
-        baseFunc.click(CLICK_BOOK_LAST);
-    }
-
-    public String finalText(){
-        return baseFunc.findElement(FINAL_TEXT).getText();
-    }
 }
+
