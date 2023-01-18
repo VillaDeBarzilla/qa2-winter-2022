@@ -126,8 +126,8 @@ public class FlymodeTest {
         input.sendKeys(text);
     }
 
-    @AfterEach
-    public void closeBrowser() {
-        browser.close();
-    }
+   // @AfterEach
+   // public void closeBrowser() {
+   //     browser.close();
+   // }
 }
