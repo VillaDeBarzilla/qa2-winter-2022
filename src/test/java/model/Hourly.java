@@ -127,4 +127,12 @@ public class Hourly {
     public void setPop(double pop) {
         this.pop = pop;
     }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
 }
