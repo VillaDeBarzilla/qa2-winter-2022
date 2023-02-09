@@ -24,8 +24,6 @@ public class Current {
     private int windDeg;
     @JsonProperty("wind_gust")
     private double windGust;
-    private String weather;
-
 
 
     public long getDt() {
@@ -140,11 +138,5 @@ public class Current {
         this.windGust = windGust;
     }
 
-    public String getWeather() {
-        return weather;
-    }
 
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
 }

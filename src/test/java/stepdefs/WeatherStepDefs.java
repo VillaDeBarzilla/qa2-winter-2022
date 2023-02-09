@@ -29,8 +29,10 @@ public class WeatherStepDefs {
 
     @Then("coordinates are:")
     public void check_coordinates(Map<String, Double> params) {
-        Assertions.assertEquals(params.get("latitude"), response.getLat(), "Wrong Lat!");
-        Assertions.assertEquals(params.get("longitude"), response.getLon(), "Wrong Long!");
+        Assertions.assertEquals(params.get("latitude"), response.getLat(), "Wrong latitude!");
+        Assertions.assertEquals(params.get("longitude"), response.getLon(), "Wrong longitude!");
+        Assertions.assertEquals(params.get("timezone"), response.getTimezone(), "Wrong timezone!");
+        Assertions.assertEquals(params.get("timezoneOffset"), response.getTimezoneOffset(), "Wrong timezone offset!");
     }
 
     @Then("timezone information is:")
@@ -44,42 +46,42 @@ public class WeatherStepDefs {
     }
 
     @Then("current cloud information is is:")
-    public void current_cloud_information(Map<String, Long> params){
+    public void current_cloud_information(Map<String, Long> params) {
 
     }
 
     @Then("hourly forecast is:")
-    public void hourly_forecast(Map<String, String> params){
+    public void hourly_forecast(Map<String, String> params) {
 
     }
 
     @Then("hourly cloud information is:")
-    public void hourly_cloud_information(Map<String, String> params){
+    public void hourly_cloud_information(Map<String, String> params) {
 
     }
 
     @Then("daily forecast is:")
-    public void daily_forecast(Map<String, String> params){
+    public void daily_forecast(Map<String, String> params) {
 
     }
 
     @Then("daily temperature information is:")
-    public void daily_temperature_information(Map<String, Double> params){
+    public void daily_temperature_information(Map<String, Double> params) {
 
     }
 
     @Then("daily feels like information is:")
-    public void daily_feels_like(Map<String, Double> params){
+    public void daily_feels_like(Map<String, Double> params) {
 
     }
 
     @Then("daily cloud information is:")
-    public void daily_cloud_information(Map<String, String> params){
+    public void daily_cloud_information(Map<String, String> params) {
 
     }
 
     @Then("minutely forecast is:")
-    public void minutely_forecast(Map<String, String> params){
+    public void minutely_forecast(Map<String, String> params) {
 
     }
 

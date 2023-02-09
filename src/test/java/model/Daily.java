@@ -2,6 +2,8 @@ package model;
 
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class Daily {
     private long dt;
     private long sunrise;
@@ -10,6 +12,10 @@ public class Daily {
     private long moonset;
     @JsonProperty("moon_phase")
     private double moonPhase;
+    private Temperature temperature;
+    private FeelsLike feelsLike;
+    private List<Weather> weatherList;
+
 
     public long getDt() {
         return dt;
@@ -57,5 +63,29 @@ public class Daily {
 
     public void setMoonPhase(double moonPhase) {
         this.moonPhase = moonPhase;
+    }
+
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Temperature temperature) {
+        this.temperature = temperature;
+    }
+
+    public FeelsLike getFeelsLike() {
+        return feelsLike;
+    }
+
+    public void setFeelsLike(FeelsLike feelsLike) {
+        this.feelsLike = feelsLike;
+    }
+
+    public List<Weather> getWeatherList() {
+        return weatherList;
+    }
+
+    public void setWeatherList(List<Weather> weatherList) {
+        this.weatherList = weatherList;
     }
 }

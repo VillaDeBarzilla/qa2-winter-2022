@@ -4,18 +4,20 @@ import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProp
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherResponse {
     private double lat;
     private double lon;
     private String timezone;
     @JsonProperty("timezone_offset")
-    private int timezone_offset;
+    private int timezoneOffset;
     private Current current;
-    private List<Weather> weatherList;
     private List<Minutely> minutely;
     private List<Hourly> hourly;
     private List<Daily> daily;
+    private List<Alerts> alerts;
+    private List<Tags> tags;
+    private List<Weather> weatherList;
 
 
     public double getLat() {
@@ -42,12 +44,12 @@ public class WeatherResponse {
         this.timezone = timezone;
     }
 
-    public int getTimezone_offset() {
-        return timezone_offset;
+    public int getTimezoneOffset() {
+        return timezoneOffset;
     }
 
-    public void setTimezone_offset(int timezone_offset) {
-        this.timezone_offset = timezone_offset;
+    public void setTimezoneOffset(int timezoneOffset) {
+        this.timezoneOffset = timezoneOffset;
     }
 
     public Current getCurrent() {
@@ -80,6 +82,23 @@ public class WeatherResponse {
 
     public void setDaily(List<Daily> daily) {
         this.daily = daily;
+    }
+
+
+    public List<Alerts> getAlerts() {
+        return alerts;
+    }
+
+    public void setAlerts(List<Alerts> alerts) {
+        this.alerts = alerts;
+    }
+
+    public List<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
     }
 
     public List<Weather> getWeatherList() {
