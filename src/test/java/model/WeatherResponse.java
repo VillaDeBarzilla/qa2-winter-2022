@@ -1,10 +1,8 @@
 package model;
 
-import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherResponse {
     private double lat;
     private double lon;
@@ -12,12 +10,13 @@ public class WeatherResponse {
     @JsonProperty("timezone_offset")
     private int timezoneOffset;
     private Current current;
+    private List<Weather> weathers;
     private List<Minutely> minutely;
     private List<Hourly> hourly;
     private List<Daily> daily;
     private List<Alerts> alerts;
     private List<Tags> tags;
-    private List<Weather> weatherList;
+
 
 
     public double getLat() {
@@ -101,11 +100,11 @@ public class WeatherResponse {
         this.tags = tags;
     }
 
-    public List<Weather> getWeatherList() {
-        return weatherList;
+    public List<Weather> getWeathers() {
+        return weathers;
     }
 
-    public void setWeatherList(List<Weather> weatherList) {
-        this.weatherList = weatherList;
+    public void setWeathers(List<Weather> weathers) {
+        this.weathers = weathers;
     }
 }

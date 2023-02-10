@@ -1,9 +1,11 @@
 package model;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Current {
     private long dt;
     private long sunrise;
@@ -24,6 +26,7 @@ public class Current {
     private int windDeg;
     @JsonProperty("wind_gust")
     private double windGust;
+    private List<Weather> weather;
 
 
     public long getDt() {
@@ -138,5 +141,11 @@ public class Current {
         this.windGust = windGust;
     }
 
+    public List<Weather> getWeather() {
+        return weather;
+    }
 
+    public void setWeather(List<Weather> weather) {
+        this.weather = weather;
+    }
 }
