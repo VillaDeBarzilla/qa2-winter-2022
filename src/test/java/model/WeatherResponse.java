@@ -10,14 +10,20 @@ public class WeatherResponse {
     @JsonProperty("timezone_offset")
     private int timezoneOffset;
     private Current current;
-    private List<Weather> weathers;
     private List<Minutely> minutely;
     private List<Hourly> hourly;
     private List<Daily> daily;
     private List<Alerts> alerts;
     private List<Tags> tags;
+    private List<Weather> weatherList;
 
+    public List<Weather> getWeatherList() {
+        return weatherList;
+    }
 
+    public void setWeatherList(List<Weather> weatherList) {
+        this.weatherList = weatherList;
+    }
 
     public double getLat() {
         return lat;
@@ -100,11 +106,4 @@ public class WeatherResponse {
         this.tags = tags;
     }
 
-    public List<Weather> getWeathers() {
-        return weathers;
-    }
-
-    public void setWeathers(List<Weather> weathers) {
-        this.weathers = weathers;
-    }
 }

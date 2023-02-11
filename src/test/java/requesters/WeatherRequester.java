@@ -2,6 +2,7 @@ package requesters;
 
 import io.cucumber.core.internal.com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
+import model.Weather;
 import model.WeatherResponse;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +17,7 @@ public class WeatherRequester {
 
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(jsonToParse, WeatherResponse.class);
+
     }
 
 }

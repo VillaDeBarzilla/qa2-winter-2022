@@ -28,7 +28,6 @@ public class Current {
     private double windGust;
     private List<Weather> weather;
 
-
     public long getDt() {
         return dt;
     }
@@ -148,4 +147,5 @@ public class Current {
     public void setWeather(List<Weather> weather) {
         this.weather = weather;
     }
+
 }

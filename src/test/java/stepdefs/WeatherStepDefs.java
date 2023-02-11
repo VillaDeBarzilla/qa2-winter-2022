@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import model.Current;
+import model.Minutely;
 import model.Weather;
 import model.WeatherResponse;
 import org.junit.jupiter.api.Assertions;
@@ -43,9 +44,9 @@ public class WeatherStepDefs {
 
     @Then("current weather data is:")
     public void check_current_weather(Map<String, String> params) {
-        Assertions.assertEquals(params.get("time"),  String.valueOf(response.getCurrent().getDt()), "Wrong time!");
+        Assertions.assertEquals(params.get("time"), String.valueOf(response.getCurrent().getDt()), "Wrong time!");
         Assertions.assertEquals(params.get("sunrise"), String.valueOf(response.getCurrent().getSunrise()), "Wrong sunrise!");
-        Assertions.assertEquals(params.get("sunset"), String.valueOf(response.getCurrent().getSunset()),"Wrong sunset!");
+        Assertions.assertEquals(params.get("sunset"), String.valueOf(response.getCurrent().getSunset()), "Wrong sunset!");
         Assertions.assertEquals(params.get("temperature"), String.valueOf(response.getCurrent().getTemp()), "Wrong temperature!");
         Assertions.assertEquals(params.get("feels_like"), String.valueOf(response.getCurrent().getFeelsLike()), "Wrong feels like!");
         Assertions.assertEquals(params.get("pressure"), String.valueOf(response.getCurrent().getPressure()), "Wrong pressure!");
@@ -60,13 +61,23 @@ public class WeatherStepDefs {
 
     }
 
-    @Then("current cloud information is is:")
+    @Then("current cloud information is:")
     public void current_cloud_information(Map<String, String> params) {
+        Weather weather = new Weather();
 
-       Assertions.assertEquals(params.get("id"), id, "Wrong id!");
-       Assertions.assertEquals(params.get("main"), String.valueOf(weather.getMain()), "Wrong main!");
-       Assertions.assertEquals(params.get("description"), String.valueOf(weather.getDescription()), "Wrong description!");
-       Assertions.assertEquals(params.get("icon"), String.valueOf(weather.getIcon()), "Wrong icon!");
+        Assertions.assertEquals(params.get("id"), String.valueOf(weather.getCurrent().getWeather()), "Wrong id!");
+        Assertions.assertEquals(params.get("main"), response.getWeatherList(), "Wrong main!");
+        Assertions.assertEquals(params.get("description"), weather.getDescription(), "Wrong description!");
+        Assertions.assertEquals(params.get("icon"), weather.getIcon(), "Wrong icon!");
+
+    }
+
+
+    @Then("minutely forecast is:")
+    public void minutely_forecast(Map<String, String> params) {
+        Minutely minutely = new Minutely();
+        Assertions.assertEquals(params.get("time"), String.valueOf(minutely.getDt()), "Wrong time!");
+        Assertions.assertEquals(params.get("precipitation"), String.valueOf(minutely.getPrecipitation()), "Wrong precipitation!");
     }
 
     @Then("hourly forecast is:")
@@ -99,10 +110,6 @@ public class WeatherStepDefs {
 
     }
 
-    @Then("minutely forecast is:")
-    public void minutely_forecast(Map<String, String> params) {
-
-    }
 
     @Then("alert Nr. {int} received:")
     public void check_alert(int index, Map<String, String> params) {

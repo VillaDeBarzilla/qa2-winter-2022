@@ -28,7 +28,7 @@ Feature: Weather forecast
       | wind_deg    | 360        |
       | wind_gust   | 13.89      |
 
-    And current cloud information is is:
+    And current cloud information is:
       | id          | 802              |
       | main        | Clouds           |
       | description | scattered clouds |
