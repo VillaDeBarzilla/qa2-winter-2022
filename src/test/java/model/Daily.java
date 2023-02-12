@@ -15,11 +15,14 @@ public class Daily {
     private double moonPhase;
     private int pressure;
     private int humidity;
-
-    private double dew_point;
-    private double wind_speed;
-    private int wind_deg;
-    private double wind_gust;
+    @JsonProperty("dew_point")
+    private double dewPoint;
+    @JsonProperty("wind_speed")
+    private double windSpeed;
+    @JsonProperty("wind_deg")
+    private int windDeg;
+    @JsonProperty("wind_gust")
+    private double windGust;
     private int clouds;
     private double pop;
     private double rain;
@@ -94,36 +97,36 @@ public class Daily {
         this.humidity = humidity;
     }
 
-    public double getDew_point() {
-        return dew_point;
+    public double getDewPoint() {
+        return dewPoint;
     }
 
-    public void setDew_point(double dew_point) {
-        this.dew_point = dew_point;
+    public void setDewPoint(double dewPoint) {
+        this.dewPoint = dewPoint;
     }
 
-    public double getWind_speed() {
-        return wind_speed;
+    public double getWindSpeed() {
+        return windSpeed;
     }
 
-    public void setWind_speed(double wind_speed) {
-        this.wind_speed = wind_speed;
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
     }
 
-    public int getWind_deg() {
-        return wind_deg;
+    public int getWindDeg() {
+        return windDeg;
     }
 
-    public void setWind_deg(int wind_deg) {
-        this.wind_deg = wind_deg;
+    public void setWindDeg(int windDeg) {
+        this.windDeg = windDeg;
     }
 
-    public double getWind_gust() {
-        return wind_gust;
+    public double getWindGust() {
+        return windGust;
     }
 
-    public void setWind_gust(double wind_gust) {
-        this.wind_gust = wind_gust;
+    public void setWindGust(double windGust) {
+        this.windGust = windGust;
     }
 
     public int getClouds() {

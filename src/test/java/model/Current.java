@@ -1,11 +1,9 @@
 package model;
 
-import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Current {
     private long dt;
     private long sunrise;

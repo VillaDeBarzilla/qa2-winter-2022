@@ -29,10 +29,10 @@ Feature: Weather forecast
       | wind_gust   | 13.89      |
 
     And current cloud information is:
-      | id          | 802              |
-      | main        | Clouds           |
-      | description | scattered clouds |
-      | icon        | 03d              |
+      | id          | 802             |
+      | main        | Clouds          |
+      | description | scatteredclouds |
+      | icon        | 03d             |
 
     And minutely forecast is:
       | time          | 1646318700 |
@@ -54,10 +54,10 @@ Feature: Weather forecast
       | pop         | 0.03       |
 
     And hourly cloud information is:
-      | id          | 803           |
-      | main        | Clouds        |
-      | description | broken clouds |
-      | icon        | 04d           |
+      | id          | 803          |
+      | main        | Clouds       |
+      | description | brokenclouds |
+      | icon        | 04d          |
 
     And daily forecast is:
       | time        | 1646326800 |
@@ -92,28 +92,30 @@ Feature: Weather forecast
       | morning | 277.66 |
 
     And daily cloud information is:
-      | id          | 500        |
-      | main        | Rain       |
-      | description | light rain |
-      | icon        | 10d        |
+      | id          | 500       |
+      | main        | Rain      |
+      | description | lightrain |
+      | icon        | 10d       |
 
     And alert Nr. 1 received:
-      | sender      | NWS Philadelphia - Mount Holly (New Jersey, Delaware, Southeastern Pennsylvania)                                                                                                                                                                                                                                                                                                                                                                                                                            |
-      | start       | 1646344800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-      | end         | 1646380800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-      | description | ...SMALL CRAFT ADVISORY REMAINS IN EFFECT FROM 5 PM THIS AFTERNOON TO 3 AM EST FRIDAY... WHAT...North winds 15 to 20 kt with gusts up to 25 kt and seas 3 to 5 ft expected. WHERE...Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm, Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm and Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm. WHEN...From 5 PM this afternoon to 3 AM EST Friday. IMPACTS...Conditions will be hazardous to small craft. |
+      | sender      | NWSPhiladelphia-MountHolly(NewJersey,Delaware,SoutheasternPennsylvania)                                                                                                                                                                                                                                                                                                                                         |
+      | event       | SmallCraftAdvisory                                                                                                                                                                                                                                                                                                                                                                                              |
+      | start       | 1646344800                                                                                                                                                                                                                                                                                                                                                                                                      |
+      | end         | 1646380800                                                                                                                                                                                                                                                                                                                                                                                                      |
+      | description | ...SMALLCRAFTADVISORYREMAINSINEFFECTFROM5PMTHISAFTERNOONTO3AMESTFRIDAY...*WHAT...Northwinds15to20ktwithgustsupto25ktandseas3to5ftexpected.*WHERE...CoastalwatersfromLittleEggInlettoGreatEggInletNJout20nm,CoastalwatersfromGreatEggInlettoCapeMayNJout20nmandCoastalwatersfromManasquanInlettoLittleEggInletNJout20nm.*WHEN...From5PMthisafternoonto3AMESTFriday.*IMPACTS...Conditionswillbehazardoustosmallcraft. |
 
     And tags for an alert Nr. 1 are:
       | Sunny  |
       | Clouds |
 
-    And alert Nr. 2 received:
-      | sender      | NWS Philadelphia - Mount Holly (New Jersey, Delaware, Southeastern Pennsylvania)                                                                                                                                                                                                                                                                                                                                                                                                                            |
-      | event       | Small Craft Advisory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-      | start       | 1646344800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-      | end         | 1646380800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-      | description | ...SMALL CRAFT ADVISORY REMAINS IN EFFECT FROM 5 PM THIS AFTERNOON TO 3 AM EST FRIDAY... WHAT...North winds 15 to 20 kt with gusts up to 25 kt and seas 3 to 5 ft expected. WHERE...Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm, Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm and Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm. WHEN...From 5 PM this afternoon to 3 AM EST Friday. IMPACTS...Conditions will be hazardous to small craft. |
-
-    And tags for an alert Nr. 2 are:
-      | Sunny  |
-      | Clouds |
+ #   And alert Nr. 2 received:
+ #     | sender      | NWSPhiladelphia-MountHolly(NewJersey,Delaware,SoutheasternPennsylvania)                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+ #     | event       | SmallCraftAdvisory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+ #     | start       | 1646344800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+ #     | end         | 1646380800                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+ #     | description | ...SMALL CRAFT ADVISORY REMAINS IN EFFECT FROM 5 PM THIS AFTERNOON TO 3 AM EST FRIDAY... WHAT...North winds 15 to 20 kt with gusts up to 25 kt and seas 3 to 5 ft expected. WHERE...Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm, Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm and Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm. WHEN...From 5 PM this afternoon to 3 AM EST Friday. IMPACTS...Conditions will be hazardous to small craft. |
+#
+ #   And tags for an alert Nr. 2 are:
+ #     | Sunny  |
+ #     | Clouds |
+#
