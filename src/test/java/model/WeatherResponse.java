@@ -15,15 +15,7 @@ public class WeatherResponse {
     private List<Daily> daily;
     private List<Alerts> alerts;
     private List<Tags> tags;
-    private List<Weather> weatherList;
 
-    public List<Weather> getWeatherList() {
-        return weatherList;
-    }
-
-    public void setWeatherList(List<Weather> weatherList) {
-        this.weatherList = weatherList;
-    }
 
     public double getLat() {
         return lat;
