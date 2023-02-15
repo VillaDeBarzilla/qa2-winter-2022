@@ -4,9 +4,6 @@ import io.cucumber.core.internal.com.fasterxml.jackson.core.JsonProcessingExcept
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import model.Current;
-import model.Minutely;
-import model.Weather;
 import model.WeatherResponse;
 import org.junit.jupiter.api.Assertions;
 import requesters.WeatherRequester;
@@ -155,7 +152,7 @@ public class WeatherStepDefs {
         Assertions.assertEquals(params.get("event"), response.getAlerts().get(0).getEvent(), "Wrong event in alert nr. " + index);
         Assertions.assertEquals(params.get("start"), String.valueOf(response.getAlerts().get(0).getStart()), "Wrong start in alert nr. " + index);
         Assertions.assertEquals(params.get("end"), String.valueOf(response.getAlerts().get(0).getEnd()), "Wrong end in alert nr. " + index);
-        Assertions.assertEquals(params.get("description"), response.getAlerts().get(0).getDescription(), "Wrong description in alert nr. " + index);
+        Assertions.assertEquals(params.get("description"), String.valueOf(response.getAlerts().get(0).getDescription()), "Wrong description in alert nr. " + index);
     }
 
     @Then("tags for an alert Nr. {int} are:")
