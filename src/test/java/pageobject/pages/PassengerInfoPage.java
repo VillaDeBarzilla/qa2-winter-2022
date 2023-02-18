@@ -3,7 +3,7 @@ package pageobject.pages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import pageobject.BaseFunc;
-import pageobject.model.Passenger;
+import pageobject.model.FlightInfo;
 
 public class PassengerInfoPage {
     private final By FIRST_NAME = By.id("name");
@@ -24,19 +24,17 @@ public class PassengerInfoPage {
     public PassengerInfoPage(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
     }
-
-    public void fillInPassengerForm(Passenger passenger) {
-        baseFunc.type(FIRST_NAME, passenger.getFirstName());
-        baseFunc.type(LAST_NAME, passenger.getLastName());
-        baseFunc.type(DISCOUNT, passenger.getDiscount());
-        baseFunc.type(ADULTS, passenger.getAdultsCount());
-        baseFunc.type(CHILDREN, passenger.getChildrenCount());
-        baseFunc.type(BAG, passenger.getBagCount());
-        baseFunc.selectByText(FLIGHT, passenger.getDate());
+    public void fillInPassengerForm(FlightInfo info) {
+        baseFunc.type(FIRST_NAME, info.getPassenger().getFirstName());
+        baseFunc.type(LAST_NAME, info.getPassenger().getLastName());
+        baseFunc.type(DISCOUNT, info.getDiscount());
+        baseFunc.type(ADULTS, info.getAdultCount());
+        baseFunc.type(CHILDREN, info.getChildCount());
+        baseFunc.type(BAG, info.getBagsCount());
+        baseFunc.selectByText(FLIGHT, info.getFlightDate());
 
         baseFunc.click(CLICK_GET_PRICE);
         baseFunc.waitForElementsCountToBe(GET_RESULTS, 5);
-
     }
 
     public String getFromSecond() {
