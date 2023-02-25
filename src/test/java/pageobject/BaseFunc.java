@@ -76,4 +76,6 @@ public class BaseFunc {
     public void closeBrowserAfterTest(){
         browser.close();
     }
+
+
 }

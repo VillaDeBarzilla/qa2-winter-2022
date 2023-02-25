@@ -5,15 +5,15 @@ Feature: Tickets reservation
       | departure   | RIX        |
       | destination | BCN        |
       | discount    | 12345      |
-      | adults      | 1          |
-      | children    | 2          |
-      | luggage     | 4          |
-      | date        | 13-05-2018 |
-      | seat        | 16         |
+      | adultCount  | 1          |
+      | childCount  | 2          |
+      | bagsCount   | 4          |
+      | flightDate  | 13-05-2018 |
+      | seatNr      | 16         |
 
     And passenger info is:
-      | name    | Luke      |
-      | surname | Skywalker |
+      | firstName | random    |
+      | lastName  | Skywalker |
 
 
     And home page open
@@ -25,7 +25,7 @@ Feature: Tickets reservation
     And requesting price
 
     Then passenger name and airports appears
-    And price is 500 EUR
+    And price is 280 EUR
 
     When we are pressing Book button
     And selecting seat

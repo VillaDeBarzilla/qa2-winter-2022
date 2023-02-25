@@ -22,6 +22,7 @@ public class AmazonTest {
     private final By GETTING_STARS = By.xpath(".//span[@class = 'a-icon-alt']");
     private final By GETTING_REVIEWS = By.xpath(".//div[contains(@class, 'a-section review')]");
     private final By NEXT_PAGE_BTN = By.xpath(".//li[@class = 'a-last']");
+    private final By NEXT_PAGE_BTN_DISABLED = By.xpath(".//li[@class = 'a-disabled a-last']");
 
     private WebDriver browser;
     private WebDriverWait wait;
@@ -56,13 +57,13 @@ public class AmazonTest {
 
         //--- FINDING STARS ON A FIRST PAGE
         List<WebElement> findingStarsFirst = browser.findElements(GETTING_STARS);
-        String starsFirst = findingStarsFirst.get(3).getAttribute("innerText");
+        String starsFirst = findingStarsFirst.get(1).getAttribute("innerText");
         String textFirst = starsFirst;
         String starsCountFirst = textFirst.split(" ")[0];
 
         //--- FINDING 4TH BOOK AND CLICKING ON IT
         List<WebElement> findingBook = browser.findElements(FINDING_FOURTH_BOOK);
-        findingBook.get(3).click();
+        findingBook.get(1).click();
 
         //--- FINDING STARS ON A SECOND PAGE
         List<WebElement> findingStarsSecond = browser.findElements(GETTING_STARS);
@@ -78,11 +79,20 @@ public class AmazonTest {
             reviews.get(i);
                  }
 
-        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-        WebElement selectElement =
-                wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(NEXT_PAGE_BTN));
-        browser.findElement(NEXT_PAGE_BTN).click();
+        WebElement nextPageEnabled = browser.findElement(NEXT_PAGE_BTN);
+       // WebElement nextPageDisabled = browser.findElement(NEXT_PAGE_BTN_DISABLED);
+
+        if(nextPageEnabled.isDisplayed()) nextPageEnabled.click();
+
+
+
+
+
+     // WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+     // WebElement selectElement =
+     //         wait.until(ExpectedConditions
+     //                 .visibilityOfElementLocated(NEXT_PAGE_BTN));
+     // browser.findElement(NEXT_PAGE_BTN).click();
 
 
 

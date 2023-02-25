@@ -3,7 +3,7 @@ package pageobject.model;
 public class FlightInfo {
     private String destination;
     private String departure;
-    private int discount;
+    private String discount;
     private int adultCount;
     private int childCount;
     private int bagsCount;
@@ -11,7 +11,7 @@ public class FlightInfo {
     private int seatNr;
     private Passenger passenger;
 
-    public FlightInfo(String destination, String departure, int discount, int adultCount, int childCount, int bagsCount, String flightDate, int seatNr) {
+    public FlightInfo(String departure, String destination, String discount, int adultCount, int childCount, int bagsCount, String flightDate, int seatNr) {
         this.destination = destination;
         this.departure = departure;
         this.discount = discount;
@@ -38,11 +38,11 @@ public class FlightInfo {
         this.departure = departure;
     }
 
-    public int getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 

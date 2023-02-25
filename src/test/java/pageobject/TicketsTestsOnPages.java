@@ -21,7 +21,7 @@ public class TicketsTestsOnPages {
 
         int seatNr = RandomUtils.nextInt(1, 35);
 
-        FlightInfo info = new FlightInfo("RIX", "BCN", 12345, 1,
+        FlightInfo info = new FlightInfo("RIX", "BCN", "12345", 1,
                 2, 4, "13-05-2018", seatNr);
         info.setPassenger(passenger);
 
