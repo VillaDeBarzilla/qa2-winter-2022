@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import model.Reservation;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import pageobject.BaseFunc;
 import pageobject.model.FlightInfo;
@@ -81,20 +82,22 @@ public class TicketsStepDef {
 
     @When("requesting price")
     public void request_price() {
-
+        Assertions.assertEquals(String.valueOf(infoPage.getPrice()), "280", "Price doesn't match!");
     }
 
     @Then("passenger name and airports appears")
     public void passenger_name_and_airport() {
-        //Passenger pass = new Passenger();
-        //Assertions.assertEquals(pass.getFirstName(), infoPage.getPassengerName(), "Name doesn't exist!");
-        Assertions.assertEquals(flightInfo.getDeparture(), infoPage.getFromSecond(), "Wrong destination!");
-        Assertions.assertEquals(flightInfo.getDestination(), infoPage.getToSecond(), "Wrong departure!");
+        Assertions.assertEquals(flightInfo.getPassenger().getFirstName(), infoPage.getPassengerName(), "Wrong name in get price page!");
+        Assertions.assertEquals(flightInfo.getDeparture(), infoPage.getFromSecond(), "Wrong destination in get price page!");
+        Assertions.assertEquals(flightInfo.getDestination(), infoPage.getToSecond(), "Wrong departure in get price page!");
     }
 
     @Then("price is 280 EUR")
     public void price_confirmation() {
-        Assertions.assertEquals(String.valueOf(infoPage.getPrice()), "280", "Price doesn't match!");
+        int price = Integer.parseInt(infoPage.getPrice());
+        if (price != 280) {
+            System.out.println("Price is more or less than 280");
+        }
     }
 
     @When("we are pressing Book button")
@@ -146,6 +149,20 @@ public class TicketsStepDef {
 
     @Then("all reservation data is correct")
     public void check_reservation_data() {
+        Assertions.assertEquals(flightInfo.getPassenger().getFirstName(), reservationFromApi.getName(), "Wrong name from api");
+        Assertions.assertEquals(flightInfo.getPassenger().getLastName(), reservationFromApi.getSurname(), "Wrong last name from api");
+        Assertions.assertEquals(flightInfo.getDeparture(), reservationFromApi.getDeparture(), "Wrong departure from api");
+        Assertions.assertEquals(flightInfo.getDestination(), reservationFromApi.getDestination(), "Wrong destination from api");
+        Assertions.assertEquals(flightInfo.getDiscount(), reservationFromApi.getDiscount(), "Wrong discount from api");
+        Assertions.assertEquals(flightInfo.getAdultCount(), reservationFromApi.getAdults(), "Wrong adult count from api");
+        Assertions.assertEquals(flightInfo.getChildCount(), reservationFromApi.getChildren(), "Wrong children count from api");
+        Assertions.assertEquals(flightInfo.getBagsCount(), reservationFromApi.getBagCount(), "Wrong bags count from api");
+        Assertions.assertEquals(flightInfo.getFlightDate().split("-")[0], reservationFromApi.getFlight(), "Wrong flight date from api");
+        Assertions.assertEquals(seatNr, reservationFromApi.getSeat(), "Wrong seat nr. from api");
+    }
 
+    @AfterEach
+    public void closeBrowser() {
+        baseFunc.closeBrowserAfterTest();
     }
 }

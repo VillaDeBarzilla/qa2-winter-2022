@@ -20,8 +20,6 @@ public class Passenger {
         this.lastName = lastName;
     }
 
-
-
     public String getFirstName() {
         return firstName;
     }
