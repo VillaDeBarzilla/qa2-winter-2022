@@ -14,7 +14,8 @@ public class MainPage {
     private final By CLICK_CURRENCY_BTN = By.id("currentCurrency");
     private final By SELECT_CURRENCY = By.xpath(".//a[@data-currency = 'USD']");
     private final By SELECT_INPUT_FIELD = By.id("pick-up-location");
-    private final By PICK_PONT_FROM_LIST = By.xpath(".//div[contains(@class , 'tt-suggestion tt-selectable')]");
+    private final By PICK_POINT_FROM_LIST = By.xpath(".//div[contains(@class , 'tt-suggestion tt-selectable')]");
+    private final By CLICK_SEARCH_NOW = By.id("location-submit");
 
     private BaseFunc baseFunc;
 
@@ -42,10 +43,17 @@ public class MainPage {
     public void changeCurrency() {
         baseFunc.findElement(CLICK_CURRENCY_BTN).click();
         baseFunc.findElement(SELECT_CURRENCY).click();
+        baseFunc.waitForElementToBeVisible(SELECT_INPUT_FIELD);
+        baseFunc.waitForElementToBeClickable(SELECT_INPUT_FIELD);
     }
 
     public void selectTownAndDates() {
         baseFunc.type(SELECT_INPUT_FIELD, "Riga");
-        baseFunc.findElements(PICK_PONT_FROM_LIST).get(1).click();
+        baseFunc.findElements(PICK_POINT_FROM_LIST).get(1).click();
     }
+
+    public void clickSearchNow() {
+        baseFunc.click(CLICK_SEARCH_NOW);
+    }
+
 }
